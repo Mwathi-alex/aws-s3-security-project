@@ -25,7 +25,7 @@ Components used:
 
 ---
 
-## ⚙️ Setup
+##  Setup
 
 ### 1. IAM Configuration
 - Created IAM admin user (`cloud-admin`)
