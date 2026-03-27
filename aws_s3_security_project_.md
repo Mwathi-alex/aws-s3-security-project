@@ -1,11 +1,11 @@
 # AWS S3 Security Project: Data Exfiltration & Monitoring with CloudTrail
 
-## 📌 Project Overview
+##  Project Overview
 This project demonstrates how misconfigured AWS Identity and Access Management (IAM) permissions can lead to unauthorized access and data exfiltration from Amazon S3, and how AWS CloudTrail can be used to detect and monitor such activity.
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 - Simulate a real-world cloud security misconfiguration
 - Demonstrate data exfiltration using compromised credentials
 - Monitor activity using AWS CloudTrail
@@ -13,7 +13,7 @@ This project demonstrates how misconfigured AWS Identity and Access Management (
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 Components used:
 - IAM Admin User (`cloud-admin`)
@@ -34,9 +34,9 @@ Components used:
   - `AmazonS3FullAccess` policy (intentional misconfiguration)
 
 ### 2. S3 Buckets
-- `sensitive-data-bucket`
+- `mentorship-project-buckt`
   - Stored file: `confidential.txt`
-- `cloudtrail-logs-bucket`
+- `cloudtrail-logs-project-files`
   - Stores CloudTrail logs
 
 ### 3. CloudTrail
@@ -48,7 +48,7 @@ Components used:
 
 ---
 
-## ⚔️ Attack Simulation (Data Exfiltration)
+##  Attack Simulation (Data Exfiltration)
 
 ### Configure AWS CLI (Kali Linux)
 ```bash
@@ -62,15 +62,15 @@ aws s3 ls
 
 ### Access Target Bucket
 ```bash
-aws s3 ls s3://sensitive-data-bucket
+aws s3 ls s3://mentorship-project-buckt
 ```
 
 ### Download Sensitive File
 ```bash
-aws s3 cp s3://sensitive-data-bucket/confidential.txt stolen-data.txt
+aws s3 cp s3://mentorship-project-buckt/confidential.txt stolen-data.txt
 ```
 
-✅ Result: Sensitive file successfully downloaded
+✅ Result: mentorship-project-buckt files successfully downloaded
 
 ---
 
@@ -78,7 +78,6 @@ aws s3 cp s3://sensitive-data-bucket/confidential.txt stolen-data.txt
 
 - Navigated to **CloudTrail → Event History**
 - Filtered events:
-  - `GetObject`
   - `ListBucket`
 
 ### Observations:
@@ -87,25 +86,25 @@ aws s3 cp s3://sensitive-data-bucket/confidential.txt stolen-data.txt
 - Resource: S3 bucket
 - Source IP: Attacker machine
 
-📌 This confirms unauthorized access and data exfiltration
+ This confirms unauthorized access and data exfiltration
 
 ---
 
-## 🔐 Remediation (Least Privilege)
+##  Remediation (Least Privilege)
 
 - Removed `AmazonS3FullAccess` from attacker-user
 - Applied restricted permissions OR removed access entirely
 
 ### Validation
 ```bash
-aws s3 cp s3://sensitive-data-bucket/confidential.txt test.txt
+aws s3 cp s3://mentorship-project-buckt/confidential.txt test.txt
 ```
 
 ❌ Result: Access Denied
 
 ---
 
-## 🧠 Key Learnings
+##  Key Learnings
 - Misconfigured IAM policies can expose sensitive data
 - CloudTrail is essential for visibility and auditing
 - Principle of least privilege is critical in cloud security
@@ -113,7 +112,7 @@ aws s3 cp s3://sensitive-data-bucket/confidential.txt test.txt
 
 ---
 
-## 🚀 Future Improvements
+##  Future Improvements
 - Integrate CloudWatch alerts for real-time detection
 - Add IAM policy conditions (IP restriction)
 - Enable MFA for sensitive operations
@@ -126,7 +125,7 @@ aws s3 cp s3://sensitive-data-bucket/confidential.txt test.txt
 
 ---
 
-## 📣 Conclusion
+##  Conclusion
 
 This project demonstrates a complete cloud security lifecycle:
 **Setup → Misconfiguration → Attack → Detection → Remediation → Validation**
