@@ -1,7 +1,6 @@
-AWS S3 Security Project
+# AWS S3 Security Project: 
+Data Exfiltration & Monitoring with CloudTrail
 This repository demonstrates the setup and configuration of an AWS EC2 instance. It includes step-by-step documentation and networking configurations to deploy and maintain a scalable cloud environment.
-
-# AWS S3 Security Project: Data Exfiltration & Monitoring with CloudTrail
 
 ##  Project Overview
 This project demonstrates how misconfigured AWS Identity and Access Management (IAM) permissions can lead to unauthorized access and data exfiltration from Amazon S3, and how AWS CloudTrail can be used to detect and monitor such activity.
